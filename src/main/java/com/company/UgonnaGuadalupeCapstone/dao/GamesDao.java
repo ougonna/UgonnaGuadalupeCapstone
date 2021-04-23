@@ -1,4 +1,4 @@
 package com.company.UgonnaGuadalupeCapstone.dao;
 
-public class GamesDao {
+public interface GamesDao {
 }

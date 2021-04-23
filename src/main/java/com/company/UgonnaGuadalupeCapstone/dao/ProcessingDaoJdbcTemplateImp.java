@@ -1,4 +1,4 @@
 package com.company.UgonnaGuadalupeCapstone.dao;
 
-public interface ProcessingDaoJdbcTemplateImp {
+public class ProcessingDaoJdbcTemplateImp {
 }

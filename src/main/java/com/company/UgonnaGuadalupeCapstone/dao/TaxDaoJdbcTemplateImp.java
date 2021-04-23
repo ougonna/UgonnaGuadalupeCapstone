@@ -1,4 +1,4 @@
 package com.company.UgonnaGuadalupeCapstone.dao;
 
-public interface TaxDaoJdbcTemplateImp {
+public class TaxDaoJdbcTemplateImp {
 }
