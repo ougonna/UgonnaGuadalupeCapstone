@@ -1,4 +1,13 @@
 package com.company.UgonnaGuadalupeCapstone.dao;
 
-public class ProcessingDaoJdbcTemplateImp {
+//processingFee
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class ProcessingDaoJdbcTemplateImp implements ProcessingDao {
+    @Override
+    public double getProcessingFee(String itemType) {
+        return 0;
+    }
 }

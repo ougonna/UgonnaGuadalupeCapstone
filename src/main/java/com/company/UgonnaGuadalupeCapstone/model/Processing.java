@@ -1,12 +1,11 @@
 package com.company.UgonnaGuadalupeCapstone.model;
 
-import java.math.BigDecimal;
 import java.util.Objects;
-
+//processing fee
 public class Processing {
 
     private String productType;
-    private BigDecimal fee;
+    private double fee;
 
     public String getProductType() {
         return productType;
@@ -16,11 +15,11 @@ public class Processing {
         this.productType = productType;
     }
 
-    public BigDecimal getFee() {
+    public double getFee() {
         return fee;
     }
 
-    public void setFee(BigDecimal fee) {
+    public void setFee(double fee) {
         this.fee = fee;
     }
 
@@ -36,4 +35,5 @@ public class Processing {
     public int hashCode() {
         return Objects.hash(getProductType(), getFee());
     }
+
 }
