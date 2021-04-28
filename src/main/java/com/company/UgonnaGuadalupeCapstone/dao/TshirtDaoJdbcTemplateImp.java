@@ -112,8 +112,6 @@ public class TshirtDaoJdbcTemplateImp implements TshirtDao{
         tshirt.setDescription(rs.getString("description"));
         tshirt.setPrice(rs.getBigDecimal("price"));
         tshirt.setQuantity(rs.getInt("quantity"));
-
-
         return tshirt;
 
     }

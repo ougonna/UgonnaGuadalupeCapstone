@@ -1,9 +1,14 @@
 package com.company.UgonnaGuadalupeCapstone.dao;
 
+import com.company.UgonnaGuadalupeCapstone.model.Games;
 import com.company.UgonnaGuadalupeCapstone.model.Invoice;
 
+import java.util.List;
+
 public interface InvoiceDao {
-    void addInvoice(Invoice invoice);
+
+    Invoice addInvoice(Invoice invoice);
+    Invoice getInvoice(int id);
+
 }
 
-// this is a test

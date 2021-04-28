@@ -1,6 +1,7 @@
 package com.company.UgonnaGuadalupeCapstone.dao;
 
 import com.company.UgonnaGuadalupeCapstone.model.Console;
+import com.company.UgonnaGuadalupeCapstone.model.Games;
 import com.company.UgonnaGuadalupeCapstone.model.Tshirt;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
@@ -28,7 +29,6 @@ public class TshirtDaoTest {
     @Before
     public void setUp() throws Exception {
 
-        //clean test db
         List<Tshirt> stshirt = tshirtDao.getAllTshirt();
         for (Tshirt s : stshirt){
             tshirtDao.deleteTshirt(s.getTshirtId());
@@ -37,10 +37,22 @@ public class TshirtDaoTest {
 }
 @Test
     public void addGetDeleteTshirt(){
-        Tshirt tshirt = new Tshirt();
-        tshirt.setSize("");
-        tshirt.setColor("");
-//        tshirt.
+        Tshirt tshirts = new Tshirt();
+        tshirts.setSize("");
+        tshirts.setColor("");
+        tshirts.setDescription("");
+        tshirts.setQuantity(5);
+        tshirts.setPrice(new BigDecimal("14.50"));
 
+        tshirts = tshirtDao.addTshirt(tshirts);
+        Tshirt tshirts1 = tshirtDao.getTshirt(tshirts.getTshirtId());
+        assertEquals(tshirts1, tshirts);
+
+
+        tshirtDao.deleteTshirt(tshirts.getTshirtId());
+        tshirts1 = tshirtDao.getTshirt(tshirts.getTshirtId());
+        assertNull(tshirts1);
 }
+
+
 }
