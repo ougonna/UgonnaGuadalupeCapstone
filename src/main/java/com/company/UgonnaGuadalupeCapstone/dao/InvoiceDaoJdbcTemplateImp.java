@@ -22,21 +22,21 @@ public class InvoiceDaoJdbcTemplateImp implements InvoiceDao {
     private static final String INSERT_INVOICE_SQL =
             "insert into invoice (name, street, city, state, zipcode, item_type, item_id, unit_price, quantity, subtotal, tax, processing_fee, total) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-    private static final String SELECT_INVOICE_SQL =
-            "select * from invoice where invoice_id = ?";
+    private static final String SELECT_INVOICE_SQL = "select * from invoice where invoice_id = ?";
 
 //    private static final String SELECT_ALL_INVOICE =
 //            "select * from invoice";
 
     @Autowired
     JdbcTemplate jdbcTemplate;
-    public InvoiceDaoJdbcTemplateImp(JdbcTemplate jdbcTemplate){
+
+    public InvoiceDaoJdbcTemplateImp(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
     @Override
     @Transactional
-    public void addInvoice(Invoice invoice) {
+    public int addInvoice(Invoice invoice) {
 
         jdbcTemplate.update(INSERT_INVOICE_SQL,
                 invoice.getName(),
@@ -52,10 +52,10 @@ public class InvoiceDaoJdbcTemplateImp implements InvoiceDao {
                 invoice.getTax(),
                 invoice.getProcessingFee(),
                 invoice.getTotal());
-//
-//        int id = jdbcTemplate.queryForObject("select last_insert_id()", Integer.class);
-//
-//        invoice.setInvoiceID(id);
+
+        int id = jdbcTemplate.queryForObject("select last_insert_id()", Integer.class);
+        invoice.setInvoiceID(id);
+        return id;
     }
 
     @Override
@@ -63,7 +63,7 @@ public class InvoiceDaoJdbcTemplateImp implements InvoiceDao {
     public Invoice getInvoice(int id) {
         try {
             return jdbcTemplate.queryForObject(SELECT_INVOICE_SQL, this::mapRowToGame, id);
-        }catch (EmptyResultDataAccessException ex){
+        } catch (EmptyResultDataAccessException ex) {
             return null;
         }
     }
@@ -84,7 +84,7 @@ public class InvoiceDaoJdbcTemplateImp implements InvoiceDao {
         invoice.setSubtotal(rs.getDouble("subtotal"));
         invoice.setTax(rs.getDouble("tax"));
         invoice.setProcessingFee(rs.getDouble("processing_fee"));
-        invoice.setProcessingFee(rs.getDouble("total"));
+        invoice.setTotal(rs.getDouble("total"));
         return invoice;
 
     }
