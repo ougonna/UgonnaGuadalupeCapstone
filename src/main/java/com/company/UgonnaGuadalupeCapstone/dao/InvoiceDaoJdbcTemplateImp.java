@@ -36,7 +36,7 @@ public class InvoiceDaoJdbcTemplateImp implements InvoiceDao {
 
     @Override
     @Transactional
-    public Invoice addInvoice(Invoice invoice) {
+    public void addInvoice(Invoice invoice) {
 
         jdbcTemplate.update(INSERT_INVOICE_SQL,
                 invoice.getName(),
@@ -52,12 +52,10 @@ public class InvoiceDaoJdbcTemplateImp implements InvoiceDao {
                 invoice.getTax(),
                 invoice.getProcessingFee(),
                 invoice.getTotal());
-
-        int id = jdbcTemplate.queryForObject("select last_insert_id()", Integer.class);
-
-        invoice.setInvoiceID(id);
-        return invoice;
-
+//
+//        int id = jdbcTemplate.queryForObject("select last_insert_id()", Integer.class);
+//
+//        invoice.setInvoiceID(id);
     }
 
     @Override
