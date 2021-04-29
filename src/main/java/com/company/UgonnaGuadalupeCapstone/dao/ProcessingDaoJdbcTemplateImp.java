@@ -4,10 +4,12 @@ package com.company.UgonnaGuadalupeCapstone.dao;
 
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+
 @Service
 public class ProcessingDaoJdbcTemplateImp implements ProcessingDao {
     @Override
-    public double getProcessingFee(String itemType) {
-        return 0;
+    public BigDecimal getProcessingFee(String itemType) {
+        return BigDecimal.valueOf(0);
     }
 }

@@ -1,7 +1,9 @@
 package com.company.UgonnaGuadalupeCapstone.dao;
 
+import java.math.BigDecimal;
+
 public interface TaxDao {
 
-    double getTax(String state);
+    BigDecimal getTax(String state);
     void setTax(String state, double rate);
 }

@@ -3,8 +3,9 @@ package com.company.UgonnaGuadalupeCapstone.model;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public class Games {
+public class Games implements IItem {
 
+    public static final String ITEM_TYPE = "Games";
     private int gameId;
     private String title;
     private String esrbRating;

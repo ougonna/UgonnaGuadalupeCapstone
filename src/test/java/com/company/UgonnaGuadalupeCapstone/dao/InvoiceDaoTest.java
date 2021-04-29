@@ -27,7 +27,7 @@ public class InvoiceDaoTest {
     InvoiceDao invoiceDao;
 
     @Test
-    public void getInvoice() {
+    public void add_get_invoice_test() {
         Invoice invoice = new Invoice();
         invoice.setName("Jack");
         invoice.setStreet("WD");
@@ -38,10 +38,10 @@ public class InvoiceDaoTest {
         invoice.setItemId(1);
         invoice.setUnitPrice(1);
         invoice.setQuantity(1);
-        invoice.setSubtotal(1);
-        invoice.setTax(1);
-        invoice.setProcessingFee(1);
-        invoice.setTotal(1);
+        invoice.setSubtotal(new BigDecimal(1));
+        invoice.setTax(new BigDecimal(1));
+        invoice.setProcessingFee(BigDecimal.valueOf(1));
+        invoice.setTotal(new BigDecimal(1));
 
         invoiceDao.addInvoice(invoice);
 
@@ -56,10 +56,10 @@ public class InvoiceDaoTest {
         Assert.assertEquals(invoice.getItemId(), retrievedInvoice.getItemId());
         Assert.assertEquals(invoice.getUnitPrice(), retrievedInvoice.getUnitPrice(), 0);
         Assert.assertEquals(invoice.getQuantity(), retrievedInvoice.getQuantity());
-        Assert.assertEquals(invoice.getSubtotal(), retrievedInvoice.getSubtotal(), 0);
-        Assert.assertEquals(invoice.getTax(), retrievedInvoice.getTax(), 0);
-        Assert.assertEquals(invoice.getProcessingFee(), retrievedInvoice.getProcessingFee(), 0);
-        Assert.assertEquals(invoice.getTotal(), retrievedInvoice.getTotal(), 0);
+        Assert.assertEquals(invoice.getSubtotal(), retrievedInvoice.getSubtotal());
+        Assert.assertEquals(invoice.getTax(), retrievedInvoice.getTax());
+        Assert.assertEquals(invoice.getProcessingFee(), retrievedInvoice.getProcessingFee());
+        Assert.assertEquals(invoice.getTotal(), retrievedInvoice.getTotal());
         Assert.assertEquals(invoice.getInvoiceID(), retrievedInvoice.getInvoiceID());
 
     }

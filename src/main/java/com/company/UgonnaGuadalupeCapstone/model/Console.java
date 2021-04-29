@@ -3,8 +3,9 @@ package com.company.UgonnaGuadalupeCapstone.model;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public class Console {
+public class Console implements IItem {
 
+    public static final String ITEM_TYPE = "Console";
     private int consoleId;
     private String model;
     private String manufacturer;

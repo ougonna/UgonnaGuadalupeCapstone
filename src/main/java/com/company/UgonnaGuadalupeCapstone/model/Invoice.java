@@ -1,5 +1,7 @@
 package com.company.UgonnaGuadalupeCapstone.model;
 
+import java.math.BigDecimal;
+
 public class Invoice {
 
     private int invoiceID;
@@ -12,10 +14,10 @@ public class Invoice {
     private int itemId;
     private int quantity;
     private double unitPrice;
-    private double subtotal;
-    private double tax;
-    private double processing_fee;
-    private double total;
+    private BigDecimal subtotal;
+    private BigDecimal tax;
+    private BigDecimal processing_fee;
+    private BigDecimal total;
 
     public int getInvoiceID() {
         return invoiceID;
@@ -97,35 +99,35 @@ public class Invoice {
         this.unitPrice = unitPrice;
     }
 
-    public double getSubtotal() {
+    public BigDecimal getSubtotal() {
         return subtotal;
     }
 
-    public void setSubtotal(double subtotal) {
+    public void setSubtotal(BigDecimal subtotal) {
         this.subtotal = subtotal;
     }
 
-    public double getTax() {
+    public BigDecimal getTax() {
         return tax;
     }
 
-    public void setTax(double tax) {
+    public void setTax(BigDecimal tax) {
         this.tax = tax;
     }
 
-    public double getProcessingFee() {
+    public BigDecimal getProcessingFee() {
         return processing_fee;
     }
 
-    public void setProcessingFee(double processing_fee) {
+    public void setProcessingFee(BigDecimal processing_fee) {
         this.processing_fee = processing_fee;
     }
 
-    public double getTotal() {
+    public BigDecimal getTotal() {
         return total;
     }
 
-    public void setTotal(double total) {
+    public void setTotal(BigDecimal total) {
         this.total = total;
     }
 }

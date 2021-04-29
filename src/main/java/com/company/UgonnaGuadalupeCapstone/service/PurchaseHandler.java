@@ -2,10 +2,11 @@ package com.company.UgonnaGuadalupeCapstone.service;
 
 
 import com.company.UgonnaGuadalupeCapstone.dao.*;
-import com.company.UgonnaGuadalupeCapstone.model.Invoice;
-import com.company.UgonnaGuadalupeCapstone.model.PurchaseRequest;
+import com.company.UgonnaGuadalupeCapstone.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
 
 @Service
 public class PurchaseHandler implements IPurchaseHandler {
@@ -27,7 +28,7 @@ public class PurchaseHandler implements IPurchaseHandler {
     }
 
     @Override
-    public Invoice processPurchaseRequest(PurchaseRequest purchaseRequest) {
+    public Invoice processPurchaseRequest(PurchaseRequest purchaseRequest) throws Exception {
 
         Invoice invoice = new Invoice();
         int itemID = purchaseRequest.getItemID();
@@ -40,40 +41,68 @@ public class PurchaseHandler implements IPurchaseHandler {
         invoice.setItemId(itemID);
         invoice.setQuantity(purchaseRequest.getQuantity());
         invoice.setProcessingFee(getProcessingFee(purchaseRequest));
-        invoice.setTax(getTax(purchaseRequest));
-        invoice.setSubtotal(purchaseRequest.getQuantity() * getItemPrice(purchaseRequest));
+        IItem item = getItem(purchaseRequest);
+        invoice.setSubtotal(item.getPrice().multiply(new BigDecimal(purchaseRequest.getQuantity())));
+
+        try {
+            invoice.setTax(getTax(purchaseRequest));
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new Exception("Invalid state");
+        }
+        invoice.setTotal(invoice.getSubtotal().add(invoice.getTax()).add(invoice.getProcessingFee()));
+
+        if (purchaseRequest.getQuantity() < 1)
+            throw new Exception("Invalid quantity");
+
+        if (purchaseRequest.getQuantity() > item.getQuantity())
+            throw new Exception("Insufficient inventory");
 
         _invoiceDao.addInvoice(invoice);
+
+        updateItem(item);
 
         return invoice;
     }
 
-    private double getProcessingFee(PurchaseRequest purchaseRequest) {
+    private void updateItem(IItem item) {
+        if (item instanceof Console)
+            _consoleDao.updateConsole((Console) item);
+        if (item instanceof Tshirt)
+            _tShirtDao.updateTshirt((Tshirt) item);
+        if (item instanceof Games)
+            _gamesDao.updateGame((Games) item);
+    }
+
+    private BigDecimal getProcessingFee(PurchaseRequest purchaseRequest) {
         double additionalProcessingFee = purchaseRequest.getQuantity() > 10
                 ? 15.49
                 : 0;
-        return _processingDao.getProcessingFee(purchaseRequest.getItemType()) + additionalProcessingFee;
+        return _processingDao.getProcessingFee(purchaseRequest.getItemType()).add(BigDecimal.valueOf(additionalProcessingFee));
     }
 
-    private double getTax(PurchaseRequest purchaseRequest) {
-        double itemPrice = getItemPrice(purchaseRequest);
-        return _taxDao.getTax(purchaseRequest.getState()) * itemPrice * purchaseRequest.getQuantity();
+    private BigDecimal getTax(PurchaseRequest purchaseRequest) {
+        BigDecimal itemPrice = getItem(purchaseRequest).getPrice();
+        return _taxDao
+                .getTax(purchaseRequest.getState())
+                .multiply(itemPrice)
+                .multiply(new BigDecimal(purchaseRequest.getQuantity()));
     }
 
-    private double getItemPrice(PurchaseRequest purchaseRequest) {
-        double itemPrice = 0;
+    private IItem getItem(PurchaseRequest purchaseRequest) {
+        IItem item = null;
         int itemID = purchaseRequest.getItemID();
         switch (purchaseRequest.getItemType()) {
-            case "Consoles":
-                itemPrice = _consoleDao.getConsole(itemID).getPrice().doubleValue();
+            case Console.ITEM_TYPE:
+                item = _consoleDao.getConsole(itemID);
                 break;
-            case "T-Shirts":
-                itemPrice = _tShirtDao.getTshirt(itemID).getPrice().doubleValue();
+            case Tshirt.ITEM_TYPE:
+                item = _tShirtDao.getTshirt(itemID);
                 break;
-            case "Games":
-                itemPrice = _gamesDao.getGame(itemID).getPrice().doubleValue();
+            case Games.ITEM_TYPE:
+                item = _gamesDao.getGame(itemID);
                 break;
         }
-        return itemPrice;
+        return item;
     }
 }

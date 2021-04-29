@@ -3,7 +3,8 @@ package com.company.UgonnaGuadalupeCapstone.model;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public class Tshirt {
+public class Tshirt implements IItem {
+    public static final String ITEM_TYPE = "T-Shirt";
     private int tshirtId;
     private String size;
     private String color;

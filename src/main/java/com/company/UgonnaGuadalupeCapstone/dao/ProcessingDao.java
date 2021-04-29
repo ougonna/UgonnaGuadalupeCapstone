@@ -1,6 +1,8 @@
 package com.company.UgonnaGuadalupeCapstone.dao;
 
+import java.math.BigDecimal;
+
 //processing fee
 public interface ProcessingDao {
-    double getProcessingFee(String itemType);
+    BigDecimal getProcessingFee(String itemType);
 }

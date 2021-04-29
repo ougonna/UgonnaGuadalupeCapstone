@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -17,8 +18,8 @@ public class TaxDaoJdbcTemplateImp  implements  TaxDao{
     private static final String SELECT_TAX =
             "select rate from sales_tax_rate where state = ?";
 
-    private static final String SELECT_ALL_TAX =
-            "select rate from sales_tax_rate where state = ?";
+//    private static final String SELECT_ALL_TAX =
+//            "select rate from sales_tax_rate where state = ?";
 
     @Autowired
     public TaxDaoJdbcTemplateImp(JdbcTemplate jdbcTemplate) {
@@ -26,7 +27,7 @@ public class TaxDaoJdbcTemplateImp  implements  TaxDao{
     }
 
     @Override
-    public double getTax(String state) {
+    public BigDecimal getTax(String state) {
         return _jdbcTemplate.query(SELECT_TAX, this::extractData, state);
     }
 
@@ -35,8 +36,9 @@ public class TaxDaoJdbcTemplateImp  implements  TaxDao{
 
     }
 
-    private double extractData(ResultSet resultSet) throws SQLException {
-        return resultSet.getDouble("rate");
+    private BigDecimal extractData(ResultSet resultSet) throws SQLException {
+        resultSet.next();
+        return resultSet.getBigDecimal("rate");
     }
 
     //row mapper
