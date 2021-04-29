@@ -184,8 +184,6 @@ public class PurchaseHandler implements IPurchaseHandler {
     private Invoice buildInvoiceViewModel(Invoice invoice){
 
 
-        PurchaseRequest purchaseRequest = new PurchaseRequest();
-
 
         Invoice ivm = new Invoice();
         ivm.setInvoiceID(invoice.getInvoiceID());
@@ -194,13 +192,13 @@ public class PurchaseHandler implements IPurchaseHandler {
         ivm.setCity(invoice.getCity());
         ivm.setState(invoice.getState());
         ivm.setZipcode(invoice.getZipcode());
-        ivm.setItemType(purchaseRequest.getItemType());
+        ivm.setItemType(invoice.getItemType());
         ivm.setItemId(invoice.getItemId());
-        ivm.setUnitPrice(getItem(purchaseRequest).getPrice());
-        ivm.setQuantity(purchaseRequest.getQuantity());
+        ivm.setUnitPrice(invoice.getUnitPrice());
+        ivm.setQuantity(invoice.getQuantity());
         ivm.setSubtotal(invoice.getSubtotal());
-        ivm.setTax(getTax(purchaseRequest));
-        ivm.setProcessingFee(getProcessingFee(purchaseRequest));
+        ivm.setTax(invoice.getTax());
+        ivm.setProcessingFee(invoice.getProcessingFee());
         ivm.setTotal(invoice.getTotal());
 
         return ivm;
