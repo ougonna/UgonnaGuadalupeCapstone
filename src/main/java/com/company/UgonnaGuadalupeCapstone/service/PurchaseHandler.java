@@ -41,6 +41,7 @@ public class PurchaseHandler implements IPurchaseHandler {
         invoice.setItemId(itemID);
         invoice.setQuantity(purchaseRequest.getQuantity());
         invoice.setProcessingFee(getProcessingFee(purchaseRequest));
+
         IItem item = getItem(purchaseRequest);
         invoice.setSubtotal(item.getPrice().multiply(new BigDecimal(purchaseRequest.getQuantity())));
 
