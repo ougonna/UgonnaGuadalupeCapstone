@@ -36,12 +36,13 @@ public class InvoiceDaoTest {
         invoice.setZipcode("80051");
         invoice.setItemType("idk");
         invoice.setItemId(1);
-        invoice.setUnitPrice(1);
+        invoice.setUnitPrice(new BigDecimal("1.00"));
         invoice.setQuantity(1);
-        invoice.setSubtotal(new BigDecimal(1));
-        invoice.setTax(new BigDecimal(1));
-        invoice.setProcessingFee(BigDecimal.valueOf(1));
-        invoice.setTotal(new BigDecimal(1));
+        invoice.setSubtotal(new BigDecimal("1.00"));
+        invoice.setTax(new BigDecimal("1.00"));
+        invoice.setProcessingFee(new BigDecimal("1.00"));
+        //invoice.setProcessingFee(BigDecimal.valueOf(1.00));
+        invoice.setTotal(new BigDecimal("1.00"));
 
         invoiceDao.addInvoice(invoice);
 
@@ -54,7 +55,7 @@ public class InvoiceDaoTest {
         Assert.assertEquals(invoice.getZipcode(), retrievedInvoice.getZipcode());
         Assert.assertEquals(invoice.getItemType(), retrievedInvoice.getItemType());
         Assert.assertEquals(invoice.getItemId(), retrievedInvoice.getItemId());
-        Assert.assertEquals(invoice.getUnitPrice(), retrievedInvoice.getUnitPrice(), 0);
+        Assert.assertEquals(invoice.getUnitPrice(), retrievedInvoice.getUnitPrice());
         Assert.assertEquals(invoice.getQuantity(), retrievedInvoice.getQuantity());
         Assert.assertEquals(invoice.getSubtotal(), retrievedInvoice.getSubtotal());
         Assert.assertEquals(invoice.getTax(), retrievedInvoice.getTax());

@@ -5,4 +5,5 @@ import java.math.BigDecimal;
 public interface IItem {
     BigDecimal getPrice();
     int getQuantity();
+
 }

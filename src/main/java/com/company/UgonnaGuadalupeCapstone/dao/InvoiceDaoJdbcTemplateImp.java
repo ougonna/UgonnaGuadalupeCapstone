@@ -79,7 +79,7 @@ public class InvoiceDaoJdbcTemplateImp implements InvoiceDao {
         invoice.setZipcode(rs.getString("zipcode"));
         invoice.setItemType(rs.getString("item_type"));
         invoice.setItemId(rs.getInt("item_id"));
-        invoice.setUnitPrice(rs.getDouble("unit_price"));
+        invoice.setUnitPrice(rs.getBigDecimal("unit_price"));
         invoice.setQuantity(rs.getInt("quantity"));
         invoice.setSubtotal(rs.getBigDecimal("subtotal"));
         invoice.setTax(rs.getBigDecimal("tax"));

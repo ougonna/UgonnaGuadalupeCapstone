@@ -1,6 +1,7 @@
 package com.company.UgonnaGuadalupeCapstone.model;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class Invoice {
 
@@ -13,7 +14,7 @@ public class Invoice {
     private String itemType;
     private int itemId;
     private int quantity;
-    private double unitPrice;
+    private BigDecimal unitPrice;
     private BigDecimal subtotal;
     private BigDecimal tax;
     private BigDecimal processing_fee;
@@ -91,11 +92,11 @@ public class Invoice {
         this.quantity = quantity;
     }
 
-    public double getUnitPrice() {
+    public BigDecimal getUnitPrice() {
         return unitPrice;
     }
 
-    public void setUnitPrice(double unitPrice) {
+    public void setUnitPrice(BigDecimal unitPrice) {
         this.unitPrice = unitPrice;
     }
 
@@ -129,5 +130,21 @@ public class Invoice {
 
     public void setTotal(BigDecimal total) {
         this.total = total;
+    }
+
+    //hash code
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Invoice invoice = (Invoice) o;
+        return getInvoiceID() == invoice.getInvoiceID() && getItemId() == invoice.getItemId() && getQuantity() == invoice.getQuantity() && Objects.equals(getName(), invoice.getName()) && Objects.equals(getStreet(), invoice.getStreet()) && Objects.equals(getCity(), invoice.getCity()) && Objects.equals(getState(), invoice.getState()) && Objects.equals(getZipcode(), invoice.getZipcode()) && Objects.equals(getItemType(), invoice.getItemType()) && Objects.equals(getUnitPrice(), invoice.getUnitPrice()) && Objects.equals(getSubtotal(), invoice.getSubtotal()) && Objects.equals(getTax(), invoice.getTax()) && Objects.equals(processing_fee, invoice.processing_fee) && Objects.equals(getTotal(), invoice.getTotal());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getInvoiceID(), getName(), getStreet(), getCity(), getState(), getZipcode(), getItemType(), getItemId(), getQuantity(), getUnitPrice(), getSubtotal(), getTax(), processing_fee, getTotal());
     }
 }

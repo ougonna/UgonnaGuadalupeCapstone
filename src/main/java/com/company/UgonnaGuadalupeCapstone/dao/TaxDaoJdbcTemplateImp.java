@@ -5,13 +5,14 @@ import com.company.UgonnaGuadalupeCapstone.model.Console;
 import com.company.UgonnaGuadalupeCapstone.model.Tax;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@Service
+@Repository
 public class TaxDaoJdbcTemplateImp  implements  TaxDao{
 
     private JdbcTemplate _jdbcTemplate;
