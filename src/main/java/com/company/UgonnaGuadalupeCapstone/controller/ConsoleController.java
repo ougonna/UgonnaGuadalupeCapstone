@@ -20,6 +20,7 @@ public class ConsoleController {
         this.dao = dao;
     }
 
+
     // add console
     @RequestMapping(value = "/consoles", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
@@ -37,7 +38,7 @@ public class ConsoleController {
     }
 
     //get console by manufacturer
-    @RequestMapping(value = "/consoles/manufacturer", method = RequestMethod.GET)
+    @RequestMapping(value = "/consoles/manufacturer/{manufacturer}", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public List<Console> getAllConsolesByManufacturer(@PathVariable String manufacturer){
         System.out.println("Getting consoles by manufacturer.." + manufacturer);

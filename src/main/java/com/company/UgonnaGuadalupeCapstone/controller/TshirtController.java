@@ -39,7 +39,7 @@ public class TshirtController {
     }
 
     //get tshirt by color
-    @RequestMapping(value = "/tshirts/color", method = RequestMethod.GET)
+    @RequestMapping(value = "/tshirts/color/{color}", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public List<Tshirt> getAllTshirtByColor(@PathVariable String color){
         System.out.println("Getting tshirts by color.." + color);
@@ -47,7 +47,7 @@ public class TshirtController {
     }
 
     //get tshirt by Size
-    @RequestMapping(value = "/tshirts/size", method = RequestMethod.GET)
+    @RequestMapping(value = "/tshirts/size/{size}", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public List<Tshirt> getAllTshirtBySize(@PathVariable String size){
         System.out.println("Getting tshirts by size.." + size);

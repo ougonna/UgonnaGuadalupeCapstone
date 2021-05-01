@@ -74,27 +74,8 @@ public class InvoiceViewModel {
         return _invoice.getTotal();
     }
 
-    //buildInvoiceViewModel
-//    public Invoice buildInvoiceViewModel(Invoice invoice) {
-//
-//        Invoice ivm = new Invoice();
-//        ivm.setInvoiceID(invoice.getInvoiceID());
-//        ivm.setName(invoice.getName());
-//        ivm.setStreet(invoice.getStreet());
-//        ivm.setCity(invoice.getCity());
-//        ivm.setState(invoice.getState());
-//        ivm.setZipcode(invoice.getZipcode());
-//        ivm.setItemType(invoice.getItemType());
-//        ivm.setItemId(invoice.getItemId());
-//        ivm.setUnitPrice(invoice.getUnitPrice());
-//        ivm.setQuantity(invoice.getQuantity());
-//        ivm.setSubtotal(invoice.getSubtotal());
-//        ivm.setTax(invoice.getTax());
-//        ivm.setProcessingFee(invoice.getProcessingFee());
-//        ivm.setTotal(invoice.getTotal());
-//        return ivm;
-//    }
 
+//
 //    public String get_exception() {
 //        return _exception;
 //    }

@@ -10,8 +10,10 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -39,14 +41,14 @@ public class GamesControllerTest {
     @Autowired
     GamesDao gamesDao;
 
-    List<Games> gamesList = gamesDao.getAllGames();
+
 
 
     @Test
     public void shouldReturnAllGames() throws Exception {
 
         //convert Java object to JSON
-        String outputJson = mapper.writeValueAsString(gamesList);
+        String outputJson = mapper.writeValueAsString(gamesDao.getAllGames());
 
         //ACT
         mockMvc.perform(get("/games"))      //perform the get request

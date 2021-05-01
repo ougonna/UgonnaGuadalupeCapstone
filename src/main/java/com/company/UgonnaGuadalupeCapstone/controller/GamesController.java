@@ -40,7 +40,7 @@ public class GamesController {
     }
 
     //get game by studio
-    @RequestMapping(value = "/games/studio", method = RequestMethod.GET)
+    @RequestMapping(value = "/games/studio/{studio}", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public List<Games> getAllGamesByStudio(@PathVariable String studio){
         System.out.println("Getting games by studio.." + studio);
@@ -48,7 +48,7 @@ public class GamesController {
     }
 
     //get game by esrb
-    @RequestMapping(value = "/games/esrb", method = RequestMethod.GET)
+    @RequestMapping(value = "/games/esrb/{esrb}", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public List<Games> getAllGamesByESRB(@PathVariable String esrb){
         System.out.println("Getting games by esrb.." + esrb);
@@ -56,7 +56,7 @@ public class GamesController {
     }
 
     //get game by title
-    @RequestMapping(value = "/games/title", method = RequestMethod.GET)
+    @RequestMapping(value = "/games/title/{title}", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public List<Games> getAllGamesByTitle(@PathVariable String title){
         System.out.println("Getting games by title.." + title);

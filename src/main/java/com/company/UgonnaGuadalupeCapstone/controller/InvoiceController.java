@@ -24,16 +24,17 @@ public class InvoiceController {
 
     @RequestMapping(value = "/purchase", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public InvoiceViewModel makePurchase(@RequestBody PurchaseRequest purchaseRequest){
+    public Invoice makePurchase(@RequestBody PurchaseRequest purchaseRequest){
         Invoice invoice = null;
         try {
             invoice = _purchaseHandler.processPurchaseRequest(purchaseRequest);
         } catch (Exception e) {
-//            InvoiceViewModel vm = new InvoiceViewModel(null);
-//            vm.set_exception(e.getMessage());
+            InvoiceViewModel vm = new InvoiceViewModel(null);
+            //vm.set_exception(e.getMessage());
             // TODO: return client friendly message
             e.printStackTrace();
         }
-        return new InvoiceViewModel(invoice);
+        //return new InvoiceViewModel(invoice);
+        return invoice;
     }
 }
