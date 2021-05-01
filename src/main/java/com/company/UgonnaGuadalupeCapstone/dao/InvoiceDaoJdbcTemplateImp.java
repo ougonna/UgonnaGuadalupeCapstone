@@ -4,6 +4,7 @@ import com.company.UgonnaGuadalupeCapstone.model.Invoice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,16 +17,13 @@ import java.sql.SQLException;
 //add invoice
 //get invoice
 
-@Service
+@Repository
 public class InvoiceDaoJdbcTemplateImp implements InvoiceDao {
 
     private static final String INSERT_INVOICE_SQL =
             "insert into invoice (name, street, city, state, zipcode, item_type, item_id, unit_price, quantity, subtotal, tax, processing_fee, total) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     private static final String SELECT_INVOICE_SQL = "select * from invoice where invoice_id = ?";
-
-//    private static final String SELECT_ALL_INVOICE =
-//            "select * from invoice";
 
     @Autowired
     JdbcTemplate jdbcTemplate;

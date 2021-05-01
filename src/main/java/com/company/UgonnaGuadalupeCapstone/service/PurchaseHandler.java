@@ -3,13 +3,10 @@ package com.company.UgonnaGuadalupeCapstone.service;
 
 import com.company.UgonnaGuadalupeCapstone.dao.*;
 import com.company.UgonnaGuadalupeCapstone.model.*;
-import com.company.UgonnaGuadalupeCapstone.viewModel.InvoiceViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 @Service
 public class PurchaseHandler implements IPurchaseHandler {
@@ -47,6 +44,7 @@ public class PurchaseHandler implements IPurchaseHandler {
 
         IItem item = getItem(purchaseRequest);
 
+        invoice.setUnitPrice(item.getPrice());
         //sets the subtotal by multiplying the quantity from the purchase request by the item price
         invoice.setSubtotal(item.getPrice().multiply(new BigDecimal(purchaseRequest.getQuantity())));
 
@@ -71,6 +69,7 @@ public class PurchaseHandler implements IPurchaseHandler {
         //adds invoice to invoice table
         _invoiceDao.addInvoice(invoice);
 
+        item.setQuantity(item.getQuantity() - invoice.getQuantity());
         updateItem(item);
 
         return invoice;
@@ -121,88 +120,65 @@ public class PurchaseHandler implements IPurchaseHandler {
         return item;
     }
 
-    //find invoice
-    public Invoice findInvoice(int id){
-        //get invoice object first
-        Invoice invoice = _invoiceDao.getInvoice(id);
-
-        return buildInvoiceViewModel(invoice);
-    }
-
-   //console api
-    public Console saveConsole(Console console){
-        return _consoleDao.addConsole(console);
-    }
-    public Console findConsole(int id){
-        return _consoleDao.getConsole(id);
-    }
-    public List<Console> findAllConsoles(){
-        return _consoleDao.getAllConsoles();
-    }
-    public void updateConsole(Console console){
-        _consoleDao.updateConsole(console);
-    }
-    public void removeConsole(int id){
-        _consoleDao.deleteConsole(id);
-    }
-
-    //game api
-    public Games saveGame(Games games){
-        return _gamesDao.addGame(games);
-    }
-    public Games findGames(int id){
-        return _gamesDao.getGame(id);
-    }
-    public List<Games> findAllGames(){
-        return _gamesDao.getAllGames();
-    }
-    public void updateGame (Games games){
-        _gamesDao.updateGame(games);
-    }
-    public void removeGame (int id){
-        _gamesDao.deleteGame(id);
-    }
-
-    //t-shirt api
-    public Tshirt saveTshirt(Tshirt tshirt){
-        return _tShirtDao.addTshirt(tshirt);
-    }
-    public Tshirt findTshirt(int id){
-        return _tShirtDao.getTshirt(id);
-    }
-    public List<Tshirt> findAllTshirts(){
-        return _tShirtDao.getAllTshirt();
-    }
-    public void updateTshirt (Tshirt tshirt){
-        _tShirtDao.updateTshirt(tshirt);
-    }
-    public void removeTshirt (int id){
-        _tShirtDao.deleteTshirt(id);
-    }
-
-    //buildInvoiceViewModel
-    private Invoice buildInvoiceViewModel(Invoice invoice){
+//    //find invoice
+//    public Invoice findInvoice(int id){
+//        //get invoice object first
+//        Invoice invoice = _invoiceDao.getInvoice(id);
+//
+//        return buildInvoiceViewModel(invoice);
+//    }
+//
+//   //console api
+//    public Console saveConsole(Console console){
+//        return _consoleDao.addConsole(console);
+//    }
+//    public Console findConsole(int id){
+//        return _consoleDao.getConsole(id);
+//    }
+//    public List<Console> findAllConsoles(){
+//        return _consoleDao.getAllConsoles();
+//    }
+//    public void updateConsole(Console console){
+//        _consoleDao.updateConsole(console);
+//    }
+//    public void removeConsole(int id){
+//        _consoleDao.deleteConsole(id);
+//    }
+//
+//    //game api
+//    public Games saveGame(Games games){
+//        return _gamesDao.addGame(games);
+//    }
+//    public Games findGames(int id){
+//        return _gamesDao.getGame(id);
+//    }
+//    public List<Games> findAllGames(){
+//        return _gamesDao.getAllGames();
+//    }
+//    public void updateGame (Games games){
+//        _gamesDao.updateGame(games);
+//    }
+//    public void removeGame (int id){
+//        _gamesDao.deleteGame(id);
+//    }
+//
+//    //t-shirt api
+//    public Tshirt saveTshirt(Tshirt tshirt){
+//        return _tShirtDao.addTshirt(tshirt);
+//    }
+//    public Tshirt findTshirt(int id){
+//        return _tShirtDao.getTshirt(id);
+//    }
+//    public List<Tshirt> findAllTshirts(){
+//        return _tShirtDao.getAllTshirt();
+//    }
+//    public void updateTshirt (Tshirt tshirt){
+//        _tShirtDao.updateTshirt(tshirt);
+//    }
+//    public void removeTshirt (int id){
+//        _tShirtDao.deleteTshirt(id);
+//    }
 
 
-
-        Invoice ivm = new Invoice();
-        ivm.setInvoiceID(invoice.getInvoiceID());
-        ivm.setName(invoice.getName());
-        ivm.setStreet(invoice.getStreet());
-        ivm.setCity(invoice.getCity());
-        ivm.setState(invoice.getState());
-        ivm.setZipcode(invoice.getZipcode());
-        ivm.setItemType(invoice.getItemType());
-        ivm.setItemId(invoice.getItemId());
-        ivm.setUnitPrice(invoice.getUnitPrice());
-        ivm.setQuantity(invoice.getQuantity());
-        ivm.setSubtotal(invoice.getSubtotal());
-        ivm.setTax(invoice.getTax());
-        ivm.setProcessingFee(invoice.getProcessingFee());
-        ivm.setTotal(invoice.getTotal());
-
-        return ivm;
-
-    }
 
 }

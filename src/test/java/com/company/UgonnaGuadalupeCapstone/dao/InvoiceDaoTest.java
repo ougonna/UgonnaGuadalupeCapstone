@@ -28,6 +28,7 @@ public class InvoiceDaoTest {
 
     @Test
     public void add_get_invoice_test() {
+
         Invoice invoice = new Invoice();
         invoice.setName("Jack");
         invoice.setStreet("WD");

@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 public class Tshirt implements IItem {
-    public static final String ITEM_TYPE = "T-Shirt";
+    public static final String ITEM_TYPE = "T-Shirts";
     private int tshirtId;
     private String size;
     private String color;
@@ -60,15 +60,42 @@ public class Tshirt implements IItem {
         this.quantity = quantity;
     }
 
-    public boolean equals(Object object) {
-        if (this == object) return true;
-        if (object == null || getClass() != object.getClass()) return false;
-        if (!super.equals(object)) return false;
-        Tshirt tshirt = (Tshirt) object;
-        return getTshirtId() == tshirt.getTshirtId() && getQuantity() == tshirt.getQuantity() && java.util.Objects.equals(getSize(), tshirt.getSize()) && java.util.Objects.equals(getColor(), tshirt.getColor()) && java.util.Objects.equals(getDescription(), tshirt.getDescription()) && java.util.Objects.equals(getPrice(), tshirt.getPrice());
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Tshirt tshirt = (Tshirt) o;
+
+        if (getTshirtId() != tshirt.getTshirtId()) return false;
+        if (getQuantity() != tshirt.getQuantity()) return false;
+        if (!getSize().equals(tshirt.getSize())) return false;
+        if (!getColor().equals(tshirt.getColor())) return false;
+        if (!getDescription().equals(tshirt.getDescription())) return false;
+        return getPrice().equals(tshirt.getPrice());
     }
 
+    @Override
     public int hashCode() {
-        return Objects.hash(getTshirtId(), getSize(), getColor(), getDescription(), getPrice(), getQuantity());
+        int result = getTshirtId();
+        result = 31 * result + getSize().hashCode();
+        result = 31 * result + getColor().hashCode();
+        result = 31 * result + getDescription().hashCode();
+        result = 31 * result + getPrice().hashCode();
+        result = 31 * result + getQuantity();
+        return result;
     }
+
+    //
+//    public boolean equals(Object object) {
+//        if (this == object) return true;
+//        if (object == null || getClass() != object.getClass()) return false;
+//        if (!super.equals(object)) return false;
+//        Tshirt tshirt = (Tshirt) object;
+//        return getTshirtId() == tshirt.getTshirtId() && getQuantity() == tshirt.getQuantity() && java.util.Objects.equals(getSize(), tshirt.getSize()) && java.util.Objects.equals(getColor(), tshirt.getColor()) && java.util.Objects.equals(getDescription(), tshirt.getDescription()) && java.util.Objects.equals(getPrice(), tshirt.getPrice());
+//    }
+//
+//    public int hashCode() {
+//        return Objects.hash(getTshirtId(), getSize(), getColor(), getDescription(), getPrice(), getQuantity());
+//    }
 }

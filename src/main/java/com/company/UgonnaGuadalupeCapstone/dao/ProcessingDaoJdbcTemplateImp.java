@@ -5,6 +5,7 @@ import com.company.UgonnaGuadalupeCapstone.model.Processing;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,18 +13,17 @@ import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@Service
+@Repository
 public class ProcessingDaoJdbcTemplateImp implements ProcessingDao {
 
     private static final String SELECT_PROCESSING_SQL =
-            "select * from processing_fee where fee = ?";
+            "select * from processing_fee where product_type = ?";
 //    private static final String SELECT_PROCESSING_SQL = "select * from processing_fee where product_type = ?";
 
-    @Autowired
-    JdbcTemplate jdbcTemplate;
     private JdbcTemplate _jdbcTemplate;
+    @Autowired
     public ProcessingDaoJdbcTemplateImp(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+        this._jdbcTemplate = jdbcTemplate;
     }
 
     @Override

@@ -19,9 +19,6 @@ public class TaxDaoJdbcTemplateImp  implements  TaxDao{
     private static final String SELECT_TAX =
             "select rate from sales_tax_rate where state = ?";
 
-//    private static final String SELECT_ALL_TAX =
-//            "select rate from sales_tax_rate where state = ?";
-
     @Autowired
     public TaxDaoJdbcTemplateImp(JdbcTemplate jdbcTemplate) {
         this._jdbcTemplate = jdbcTemplate;

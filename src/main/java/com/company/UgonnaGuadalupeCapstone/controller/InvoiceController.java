@@ -3,6 +3,7 @@ package com.company.UgonnaGuadalupeCapstone.controller;
 import com.company.UgonnaGuadalupeCapstone.model.Invoice;
 import com.company.UgonnaGuadalupeCapstone.model.PurchaseRequest;
 import com.company.UgonnaGuadalupeCapstone.service.IPurchaseHandler;
+import com.company.UgonnaGuadalupeCapstone.viewModel.InvoiceViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -23,14 +24,16 @@ public class InvoiceController {
 
     @RequestMapping(value = "/purchase", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public Invoice makePurchase(@RequestBody PurchaseRequest purchaseRequest){
+    public InvoiceViewModel makePurchase(@RequestBody PurchaseRequest purchaseRequest){
         Invoice invoice = null;
         try {
             invoice = _purchaseHandler.processPurchaseRequest(purchaseRequest);
         } catch (Exception e) {
+//            InvoiceViewModel vm = new InvoiceViewModel(null);
+//            vm.set_exception(e.getMessage());
             // TODO: return client friendly message
             e.printStackTrace();
         }
-        return invoice;
+        return new InvoiceViewModel(invoice);
     }
 }
