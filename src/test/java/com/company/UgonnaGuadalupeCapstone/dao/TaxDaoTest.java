@@ -5,7 +5,7 @@ import com.company.UgonnaGuadalupeCapstone.model.Games;
 import com.company.UgonnaGuadalupeCapstone.model.Tshirt;
 import com.company.UgonnaGuadalupeCapstone.model.Tax;
 import org.junit.Before;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,37 +27,12 @@ public class TaxDaoTest {
     @Autowired
     TaxDao taxDao;
 
-//    @Test
-//    public void getProcessingFee(){
-//        Tax tax = new Tax();
-//
-//
-//    }
-//    @Test
-//    public void getAllGames(){
-//        Games games = new Games();
-//        games.setTitle("Game Title");
-//        games.setEsrbRating("4.55");
-//        games.setDescription("This is a test game");
-//        games.setPrice(new BigDecimal("3.44"));
-//        games.setStudio("studio test");
-//        games.setQuantity(50);
-//
-//        gamesDao.addGame(games);
-//
-//        games = new Games();
-//        games.setTitle("Game Title2");
-//        games.setEsrbRating("3.35");
-//        games.setDescription("This is a second test game");
-//        games.setPrice(new BigDecimal("3.33"));
-//        games.setStudio("studio test2");
-//        games.setQuantity(60);
-//
-//        gamesDao.addGame(games);
-//
-//        List<Games> gamesList = gamesDao.getAllGames();
-//
-//        assertEquals(2, gamesList.size());
-//
-//    }
+
+
+    @Test
+    public void getTax() {
+        BigDecimal tax = taxDao.getTax("AL");
+        assertEquals(new BigDecimal("0.05"), tax);
+    }
+
 }
