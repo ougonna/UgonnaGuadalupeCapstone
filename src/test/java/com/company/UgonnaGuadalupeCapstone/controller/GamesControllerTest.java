@@ -113,6 +113,69 @@ public class GamesControllerTest {
                 .andExpect(content().json(outputJson));
     }
 
+    //testing GET by studio
+    @Test
+    public void shouldReturnGameByStudio() throws Exception {
+
+        Games outputGame = new Games();
+        outputGame.setTitle("Game Title");
+        outputGame.setEsrbRating("4.55");
+        outputGame.setDescription("This is a test game");
+        outputGame.setPrice(new BigDecimal("3.44"));
+        outputGame.setStudio("studioTest");
+        outputGame.setQuantity(50);
+        outputGame.setGameId(3);
+
+        String outputJson = mapper.writeValueAsString(outputGame);
+
+        mockMvc.perform(get("games/studioTest"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().json(outputJson));
+    }
+
+    //testing GET by ESRB
+    @Test
+    public void shouldReturnGameByESRB() throws Exception {
+
+        Games outputGame = new Games();
+        outputGame.setTitle("Game Title");
+        outputGame.setEsrbRating("4.55");
+        outputGame.setDescription("This is a test game");
+        outputGame.setPrice(new BigDecimal("3.44"));
+        outputGame.setStudio("studioTest");
+        outputGame.setQuantity(50);
+        outputGame.setGameId(3);
+
+        String outputJson = mapper.writeValueAsString(outputGame);
+
+        mockMvc.perform(get("games/4.55"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().json(outputJson));
+    }
+
+    //testing GET by title
+    @Test
+    public void shouldReturnGameByTitle() throws Exception {
+
+        Games outputGame = new Games();
+        outputGame.setTitle("GameTitle");
+        outputGame.setEsrbRating("4.55");
+        outputGame.setDescription("This is a test game");
+        outputGame.setPrice(new BigDecimal("3.44"));
+        outputGame.setStudio("studioTest");
+        outputGame.setQuantity(50);
+        outputGame.setGameId(3);
+
+        String outputJson = mapper.writeValueAsString(outputGame);
+
+        mockMvc.perform(get("games/GameTitle"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().json(outputJson));
+    }
+
     //testing put
     @Test
     public void shouldUpdateByIdAndReturn204StatusCode() throws Exception {

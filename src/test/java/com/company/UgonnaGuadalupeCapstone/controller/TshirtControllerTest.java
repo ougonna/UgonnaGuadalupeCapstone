@@ -106,6 +106,46 @@ public class TshirtControllerTest {
                 .andExpect(content().json(outputJson));
     }
 
+    //testing Get by Color
+    @Test
+    public void shouldReturnTshirtByColor() throws Exception {
+
+        Tshirt outputTshirt = new Tshirt();
+        outputTshirt.setSize("small");
+        outputTshirt.setColor("blue");
+        outputTshirt.setDescription("something");
+        outputTshirt.setQuantity(5);
+        outputTshirt.setPrice(new BigDecimal("14.50"));
+        outputTshirt.setTshirtId(4);
+
+        String outputJson = mapper.writeValueAsString(outputTshirt);
+
+        mockMvc.perform(get("tshirt/blue"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().json(outputJson));
+    }
+
+    //testing Get by Size
+    @Test
+    public void shouldReturnTshirtBySize() throws Exception {
+
+        Tshirt outputTshirt = new Tshirt();
+        outputTshirt.setSize("small");
+        outputTshirt.setColor("blue");
+        outputTshirt.setDescription("something");
+        outputTshirt.setQuantity(5);
+        outputTshirt.setPrice(new BigDecimal("14.50"));
+        outputTshirt.setTshirtId(4);
+
+        String outputJson = mapper.writeValueAsString(outputTshirt);
+
+        mockMvc.perform(get("tshirt/small"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().json(outputJson));
+    }
+
     //testing PUT
     @Test
     public void shouldUpdateByIdAndReturn204StatusCode() throws Exception {
