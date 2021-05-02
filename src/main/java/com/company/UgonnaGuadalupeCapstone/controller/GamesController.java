@@ -10,6 +10,7 @@ import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -21,6 +22,12 @@ public class GamesController {
 
     public GamesController(GamesDao dao){
         this.dao = dao;
+    }
+
+    @RequestMapping(value = "/hello", method = RequestMethod.GET)
+    public String hello(Principal principal) {
+
+        return "Hello " + principal.getName() + "!!!";
     }
 
     // add game
