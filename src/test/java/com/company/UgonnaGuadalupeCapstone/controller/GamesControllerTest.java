@@ -8,7 +8,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -24,9 +27,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+
 @RunWith(SpringRunner.class)
 @WebMvcTest(GamesController.class)
-
+@AutoConfigureMockMvc
 public class GamesControllerTest {
 
     //wiring in the MVC object
@@ -38,10 +42,8 @@ public class GamesControllerTest {
     //objectMapper used to convert Java objects to JSON and vice versa
     private ObjectMapper mapper = new ObjectMapper();
 
-    @Autowired
+    @MockBean
     GamesDao gamesDao;
-
-
 
 
     @Test
@@ -109,7 +111,7 @@ public class GamesControllerTest {
 
         String outputJson = mapper.writeValueAsString(outputGame);
 
-        mockMvc.perform(get("games/3"))
+        mockMvc.perform(get("/games/3"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().json(outputJson));
@@ -172,7 +174,7 @@ public class GamesControllerTest {
 
         String outputJson = mapper.writeValueAsString(outputGame);
 
-        mockMvc.perform(get("games/GameTitle"))
+        mockMvc.perform(get("/games/GameTitle"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().json(outputJson));

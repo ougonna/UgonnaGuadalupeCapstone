@@ -218,7 +218,6 @@ public class PurchaseHandlerTests {
     }
 
 //    Order quantity must be greater than zero.
-
     @Test
     public void processPurchaseRequest_QuantityNotGreaterThan0_ShouldThrowException() {
         Games game = new Games();
