@@ -1,9 +1,13 @@
 package com.company.UgonnaGuadalupeCapstone.controller;
 
+import com.company.UgonnaGuadalupeCapstone.dao.ConsoleDao;
 import com.company.UgonnaGuadalupeCapstone.dao.GamesDao;
 import com.company.UgonnaGuadalupeCapstone.dao.InvoiceDao;
+import com.company.UgonnaGuadalupeCapstone.dao.TshirtDao;
 import com.company.UgonnaGuadalupeCapstone.model.Games;
 import com.company.UgonnaGuadalupeCapstone.model.Invoice;
+import com.company.UgonnaGuadalupeCapstone.service.IPurchaseHandler;
+import com.company.UgonnaGuadalupeCapstone.service.PurchaseHandler;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,11 +38,17 @@ public class InvoiceControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
+    @MockBean
+    InvoiceDao invoiceDao;
+
+    @MockBean
+    IPurchaseHandler iPurchaseHandler;
+
+
     //objectMapper used to convert Java objects to JSON and vice versa
     private ObjectMapper mapper = new ObjectMapper();
 
-    @MockBean
-    InvoiceDao invoiceDao;
+
 
 
     //testing POST
