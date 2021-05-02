@@ -31,6 +31,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc(addFilters = false)
 public class ConsoleControllerTest {
 
+
     //wiring in the MVC object
     @Autowired
     private MockMvc mockMvc;
