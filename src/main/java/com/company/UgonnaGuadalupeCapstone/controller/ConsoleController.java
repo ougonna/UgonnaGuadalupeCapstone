@@ -53,6 +53,7 @@ public class ConsoleController {
         return dao.getAllConsoles();
     }
 
+
     //update console
     @RequestMapping(value = "/consoles", method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.OK)
