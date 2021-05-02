@@ -88,6 +88,7 @@ public class ConsoleDaoTest {
         assertEquals(2, consoles.size());
 
     }
+
     @Test
     public void getConsoleByManufacturer(){
 

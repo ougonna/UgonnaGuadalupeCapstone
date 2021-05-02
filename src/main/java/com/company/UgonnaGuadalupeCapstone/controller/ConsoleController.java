@@ -29,6 +29,12 @@ public class ConsoleController {
         return dao.addConsole(console);
     }
 
+//    @GetMapping("test")
+//    @RequestMapping(value = "/test", method = RequestMethod.GET)
+//    public Console getCon(@PathVariable int id){
+//        return dao.getConsole(id);
+//    }
+
     //get console by id
     @RequestMapping(value = "/consoles/{id}", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)

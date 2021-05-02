@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -25,6 +26,9 @@ public class InvoiceDaoTest {
 
     @Autowired
     InvoiceDao invoiceDao;
+
+    @MockBean
+    GamesDao gamesDao;
 
     @Test
     public void add_get_invoice_test() {

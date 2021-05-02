@@ -110,7 +110,7 @@ public class ConsoleControllerTest {
 
         String outputJson = mapper.writeValueAsString(outputConsole);
 
-        mockMvc.perform(get("/consoles/3"))
+        mockMvc.perform(get("/consoles/"))
                 .andDo(print())
                 .andExpect(status().isOk());
                 //.andExpect(content().json(outputJson));
