@@ -22,10 +22,10 @@ public class InvoiceController {
     @Autowired
     InvoiceDao invoiceDao;
 
-    @RequestMapping(value = "/purchase", method = RequestMethod.GET)
-    public String index(){
-        return "Hi";
-    }
+//    @RequestMapping(value = "/purchase", method = RequestMethod.GET)
+//    public String index(){
+//        return "Hi";
+//    }
 
     @RequestMapping(value = "/purchase", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
