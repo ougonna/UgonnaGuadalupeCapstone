@@ -31,6 +31,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @WebMvcTest(GamesController.class)
 @AutoConfigureMockMvc(addFilters = false)
+//@WithMockUser(username = "me", roles={"ADMIN"})
 public class GamesControllerTest {
 
     //wiring in the MVC object
