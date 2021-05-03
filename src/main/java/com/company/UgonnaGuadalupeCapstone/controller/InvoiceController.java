@@ -7,6 +7,8 @@ import com.company.UgonnaGuadalupeCapstone.service.IPurchaseHandler;
 import com.company.UgonnaGuadalupeCapstone.viewModel.InvoiceViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -29,6 +31,7 @@ public class InvoiceController {
 
     @RequestMapping(value = "/purchase", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
+    @Secured({"ROLE_ADMIN","ROLE_MANAGER"})
     public Invoice makePurchase(@RequestBody PurchaseRequest purchaseRequest){
         Invoice invoice = null;
         try {
