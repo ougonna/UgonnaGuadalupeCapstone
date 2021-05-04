@@ -6,10 +6,13 @@ import com.company.UgonnaGuadalupeCapstone.model.PurchaseRequest;
 import com.company.UgonnaGuadalupeCapstone.service.IPurchaseHandler;
 import com.company.UgonnaGuadalupeCapstone.viewModel.InvoiceViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 
 @RestController
@@ -31,8 +34,8 @@ public class InvoiceController {
 
     @RequestMapping(value = "/purchase", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    @Secured({"ROLE_ADMIN","ROLE_MANAGER"})
-    public Invoice makePurchase(@RequestBody PurchaseRequest purchaseRequest){
+    @Secured({"ROLE_USER", "ROLE_ADMIN", "ROLE_MANAGER"})
+    public Invoice makePurchase(@RequestBody @Valid PurchaseRequest purchaseRequest){
         Invoice invoice = null;
         try {
             invoice = _purchaseHandler.processPurchaseRequest(purchaseRequest);
@@ -49,6 +52,7 @@ public class InvoiceController {
     //get invoice by id
     @RequestMapping(value = "/invoice/{id}", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
+    @Secured({"ROLE_ADMIN", "ROLE_MANAGER"})
     public Invoice getInvoice(@PathVariable int id){
         System.out.println("getting invoice id = " + id);
         return invoiceDao.getInvoice(id);
