@@ -1,8 +1,12 @@
 package com.company.UgonnaGuadalupeCapstone.model;
 
+import javax.validation.constraints.NotNull;
+
 public class PurchaseRequest {
 
+    @NotNull
     private String name;
+
     private String street;
     private String city;
     private String state;

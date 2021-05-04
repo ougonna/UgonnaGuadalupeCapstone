@@ -50,7 +50,6 @@ public class ConsoleControllerTest {
 
     //Testing GET
     @Test
-    @WithMockUser(password = "password", username = "adminUser", roles={"ROLE_ADMIN", "ROLE_USER"})
     public void shouldReturnAllConsoles() throws Exception{
         //convert Java Object to JSON
         String outputJson = mapper.writeValueAsString(console1.getAllConsoles());

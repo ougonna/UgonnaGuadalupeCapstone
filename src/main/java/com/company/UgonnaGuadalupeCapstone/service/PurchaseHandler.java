@@ -3,6 +3,7 @@ package com.company.UgonnaGuadalupeCapstone.service;
 
 import com.company.UgonnaGuadalupeCapstone.dao.*;
 import com.company.UgonnaGuadalupeCapstone.model.*;
+import com.company.UgonnaGuadalupeCapstone.controller.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,18 +54,19 @@ public class PurchaseHandler implements IPurchaseHandler {
             invoice.setTax(getTax(purchaseRequest)); //shouldn't this be purchaseRequest.getState()? setTax takes in two variables: State and tax.  getTax takes in only the state
         } catch (Exception e) {
             e.printStackTrace();
-            throw new Exception("Invalid state");
+            throw new IllegalArgumentException("Invalid state");
         }
          //sets the total for the order by adding subtotal, tax and processing fee
         invoice.setTotal(invoice.getSubtotal().add(invoice.getTax()).add(invoice.getProcessingFee()));
 
         //throws exception if quantity of items ordered is less than 1
         if (purchaseRequest.getQuantity() < 1)
-            throw new Exception("Invalid quantity");
+            throw new IllegalArgumentException("Invalid quantity");
 
         //throws exception if quantity requested is more than quantity in inventory
         if (purchaseRequest.getQuantity() > item.getQuantity())
-            throw new Exception("Insufficient inventory");
+            throw new IllegalArgumentException("Insufficient inventory");
+            //throw new illegalArgumentException("Insufficient inventory");
 
         //adds invoice to invoice table
         _invoiceDao.addInvoice(invoice);
