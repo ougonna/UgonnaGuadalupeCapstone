@@ -1,6 +1,7 @@
 package com.company.UgonnaGuadalupeCapstone.controller;
 
 
+//import com.company.UgonnaGuadalupeCapstone.exceptions.NotFoundException;
 import com.company.UgonnaGuadalupeCapstone.model.CustomErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ import java.util.List;
 
 @RestControllerAdvice
 public class ControllerAdvice {
+
     @ExceptionHandler(value = {MethodArgumentNotValidException.class})
     @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
     public ResponseEntity<List<CustomErrorResponse>> recordValidationError(MethodArgumentNotValidException e) {
@@ -49,6 +51,10 @@ public class ControllerAdvice {
         ResponseEntity<CustomErrorResponse> responseEntity = new ResponseEntity<>(error, HttpStatus.UNPROCESSABLE_ENTITY);
         return responseEntity;
     }
+
+
+
+
 
 
 }

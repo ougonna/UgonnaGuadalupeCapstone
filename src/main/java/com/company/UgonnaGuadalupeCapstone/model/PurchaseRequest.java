@@ -1,18 +1,28 @@
 package com.company.UgonnaGuadalupeCapstone.model;
 
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class PurchaseRequest {
 
-    @NotNull
+    @NotEmpty(message = "You must enter your name")
     private String name;
-
+    @NotEmpty(message = "You must enter your street")
     private String street;
+    @NotEmpty(message = "You must enter your city")
     private String city;
+    @NotEmpty(message = "You must enter your state abbreviation")
+    @Size(min = 2, max = 2)
     private String state;
+    @NotEmpty(message = "You must enter your Zipcode")
+    @Size(min = 5, max = 5)
     private String zip;
+    @NotEmpty(message = "You must enter your itemType")
     private String itemType;
+    //@NotEmpty(message = "You must enter your itemID")
     private int itemID;
+    //@NotEmpty(message = "Please enter how many items you want to order ")
     private int quantity;
 
 
