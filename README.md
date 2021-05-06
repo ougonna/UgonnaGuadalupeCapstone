@@ -2,6 +2,7 @@
 Netflix Bootcamp Capstone Project by Ogechi Ugonna, Thalia Guadalupe and Donn Shannon. 
 
 Link to Authorization Service Porject: https://github.com/tguadalupe/AuthorizationService.git
+
 Link to Powerpoint is in the index.html: http://localhost:8080
 
 @Secure on each of the controllers had to be commented out in order to pass the controller test as well as turning off security by including 
