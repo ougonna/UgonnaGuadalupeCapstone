@@ -2,29 +2,22 @@ package com.company.UgonnaGuadalupeCapstone.controller;
 
 
 import com.company.UgonnaGuadalupeCapstone.dao.ConsoleDao;
-import com.company.UgonnaGuadalupeCapstone.dao.GamesDao;
 import com.company.UgonnaGuadalupeCapstone.model.Console;
-import com.company.UgonnaGuadalupeCapstone.model.Games;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.MockMvcAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -45,7 +38,6 @@ public class ConsoleControllerTest {
     @MockBean
     ConsoleDao console1;
 
-    //List<Console> consoleList = console1.getAllConsoles();
 
 
     //Testing GET

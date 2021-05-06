@@ -1,8 +1,7 @@
 package com.company.UgonnaGuadalupeCapstone.controller;
 
-import com.company.UgonnaGuadalupeCapstone.dao.ConsoleDao;
+
 import com.company.UgonnaGuadalupeCapstone.dao.TshirtDao;
-import com.company.UgonnaGuadalupeCapstone.model.Console;
 import com.company.UgonnaGuadalupeCapstone.model.Tshirt;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
@@ -16,11 +15,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.math.BigDecimal;
-import java.util.List;
+
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)

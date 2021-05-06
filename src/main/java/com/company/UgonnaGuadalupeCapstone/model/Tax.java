@@ -1,7 +1,6 @@
 package com.company.UgonnaGuadalupeCapstone.model;
 
-import java.math.BigDecimal;
-import java.util.Objects;
+
 
 public class Tax {
 private String _state;

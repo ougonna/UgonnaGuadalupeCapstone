@@ -1,7 +1,5 @@
 package com.company.UgonnaGuadalupeCapstone.controller;
 
-
-//import com.company.UgonnaGuadalupeCapstone.exceptions.NotFoundException;
 import com.company.UgonnaGuadalupeCapstone.model.CustomErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +18,7 @@ import java.util.List;
 public class ControllerAdvice {
 
     @ExceptionHandler(value = {MethodArgumentNotValidException.class})
-    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<CustomErrorResponse>> recordValidationError(MethodArgumentNotValidException e) {
         // BindingResult holds the validation errors
         BindingResult result = e.getBindingResult();
@@ -31,9 +29,9 @@ public class ControllerAdvice {
         List<CustomErrorResponse> errorResponseList = new ArrayList<>();
 
         for (FieldError fieldError : fieldErrors) {
-            CustomErrorResponse errorResponse = new CustomErrorResponse(HttpStatus.UNPROCESSABLE_ENTITY.toString(), fieldError.getDefaultMessage());
+            CustomErrorResponse errorResponse = new CustomErrorResponse(HttpStatus.OK.toString(), fieldError.getDefaultMessage());
             errorResponse.setTimestamp(LocalDateTime.now());
-            errorResponse.setStatus(HttpStatus.UNPROCESSABLE_ENTITY.value());
+            errorResponse.setStatus(HttpStatus.OK.value());
             errorResponseList.add(errorResponse);
         }
         // Create and return the ResponseEntity
@@ -42,20 +40,16 @@ public class ControllerAdvice {
     }
 
 
+
     @ExceptionHandler(value = IllegalArgumentException.class)
-    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<CustomErrorResponse> handleGenericNotFoundException(IllegalArgumentException e) {
-        CustomErrorResponse error = new CustomErrorResponse(HttpStatus.UNPROCESSABLE_ENTITY.toString(), e.getMessage());
-        error.setStatus((HttpStatus.UNPROCESSABLE_ENTITY.value()));
+        CustomErrorResponse error = new CustomErrorResponse(HttpStatus.OK.toString(), e.getMessage());
+        error.setStatus((HttpStatus.OK.value()));
         error.setTimestamp(LocalDateTime.now());
-        ResponseEntity<CustomErrorResponse> responseEntity = new ResponseEntity<>(error, HttpStatus.UNPROCESSABLE_ENTITY);
+        ResponseEntity<CustomErrorResponse> responseEntity = new ResponseEntity<>(error, HttpStatus.OK);
         return responseEntity;
     }
-
-
-
-
-
 
 }
 

@@ -1,7 +1,6 @@
 package com.company.UgonnaGuadalupeCapstone.viewModel;
 
 import com.company.UgonnaGuadalupeCapstone.model.Invoice;
-
 import java.math.BigDecimal;
 
 public class InvoiceViewModel {
@@ -29,7 +28,6 @@ public class InvoiceViewModel {
         return _invoice.getCity();
     }
 
-    // TODO: Finish or just return
     public String getState() {
         switch (_invoice.getState()){
             case "CA":
@@ -75,16 +73,15 @@ public class InvoiceViewModel {
     }
 
 
-//
-//    public String get_exception() {
-//        return _exception;
-//    }
-//
-//    public void set_exception(String _exception) {
-//        switch (_exception){
-//            case "Invalid state":
-//                this._exception = _invoice.getState() + "is not a valid state";
-//        }
-//        this._exception = _exception;
-//    }
+    public String get_exception() {
+        return _exception;
+    }
+
+    public void set_exception(String _exception) {
+        switch (_exception){
+            case "Invalid state":
+                this._exception = _invoice.getState() + "is not a valid state";
+        }
+        this._exception = _exception;
+    }
 }

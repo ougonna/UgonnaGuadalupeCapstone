@@ -2,11 +2,8 @@ package com.company.UgonnaGuadalupeCapstone.dao;
 
 
 import com.company.UgonnaGuadalupeCapstone.model.Tshirt;
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
-
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

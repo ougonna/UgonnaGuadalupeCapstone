@@ -6,10 +6,8 @@ import com.company.UgonnaGuadalupeCapstone.model.PurchaseRequest;
 import com.company.UgonnaGuadalupeCapstone.service.IPurchaseHandler;
 import com.company.UgonnaGuadalupeCapstone.viewModel.InvoiceViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -27,11 +25,6 @@ public class InvoiceController {
     @Autowired
     InvoiceDao invoiceDao;
 
-//    @RequestMapping(value = "/purchase", method = RequestMethod.GET)
-//    public String index(){
-//        return "Hi";
-//    }
-
     @RequestMapping(value = "/purchase", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     @Secured({"ROLE_USER", "ROLE_ADMIN", "ROLE_MANAGER"})
@@ -41,11 +34,9 @@ public class InvoiceController {
             invoice = _purchaseHandler.processPurchaseRequest(purchaseRequest);
         } catch (Exception e) {
             InvoiceViewModel vm = new InvoiceViewModel(null);
-            //vm.set_exception(e.getMessage());
-            // TODO: return client friendly message
+            vm.set_exception(e.getMessage());
             e.printStackTrace();
         }
-        //return new InvoiceViewModel(invoice);
         return invoice;
     }
 

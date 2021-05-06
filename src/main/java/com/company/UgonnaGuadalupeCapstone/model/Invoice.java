@@ -1,16 +1,23 @@
 package com.company.UgonnaGuadalupeCapstone.model;
 
+import javax.validation.constraints.NotEmpty;
 import java.math.BigDecimal;
 import java.util.Objects;
 
 public class Invoice {
 
     private int invoiceID;
+    @NotEmpty(message = "OOF")
     private String name;
+    @NotEmpty(message = "OOF")
     private String street;
+    @NotEmpty(message = "OOF")
     private String city;
+    @NotEmpty(message = "OOF")
     private String state;
+    @NotEmpty(message = "OOF")
     private String zipcode;
+    @NotEmpty(message = "OOF")
     private String itemType;
     private int itemId;
     private int quantity;

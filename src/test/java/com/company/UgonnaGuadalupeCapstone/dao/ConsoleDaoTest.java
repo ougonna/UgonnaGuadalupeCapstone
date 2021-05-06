@@ -20,14 +20,7 @@ public class ConsoleDaoTest {
 
     @Autowired
     ConsoleDao consoleDao;
-//    @Autowired
-//    GamesDao gamesDao;
-//    @Autowired
-//    TshirtDao tshirtDao;
-//    @Autowired
-//    ProcessingDao processingDao;
-//    @Autowired
-//    TaxDao taxDao;
+
 
     @Before
     public void setUp() throws Exception {

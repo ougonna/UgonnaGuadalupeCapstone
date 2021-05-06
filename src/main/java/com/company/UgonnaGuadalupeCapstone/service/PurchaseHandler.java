@@ -3,7 +3,6 @@ package com.company.UgonnaGuadalupeCapstone.service;
 
 import com.company.UgonnaGuadalupeCapstone.dao.*;
 import com.company.UgonnaGuadalupeCapstone.model.*;
-import com.company.UgonnaGuadalupeCapstone.controller.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -88,6 +87,10 @@ public class PurchaseHandler implements IPurchaseHandler {
     }
 
     //processing fee
+    //The processing fee is applied only once per order regardless of the
+    // number of items in the order unless the number of items on the order
+    // is greater than 10 in which case an additional processing fee of $15.49
+    // is applied to the order.
     private BigDecimal getProcessingFee(PurchaseRequest purchaseRequest) {
         double additionalProcessingFee = purchaseRequest.getQuantity() > 10
                 ? 15.49
@@ -121,66 +124,5 @@ public class PurchaseHandler implements IPurchaseHandler {
         }
         return item;
     }
-
-//    //find invoice
-//    public Invoice findInvoice(int id){
-//        //get invoice object first
-//        Invoice invoice = _invoiceDao.getInvoice(id);
-//
-//        return buildInvoiceViewModel(invoice);
-//    }
-//
-//   //console api
-//    public Console saveConsole(Console console){
-//        return _consoleDao.addConsole(console);
-//    }
-//    public Console findConsole(int id){
-//        return _consoleDao.getConsole(id);
-//    }
-//    public List<Console> findAllConsoles(){
-//        return _consoleDao.getAllConsoles();
-//    }
-//    public void updateConsole(Console console){
-//        _consoleDao.updateConsole(console);
-//    }
-//    public void removeConsole(int id){
-//        _consoleDao.deleteConsole(id);
-//    }
-//
-//    //game api
-//    public Games saveGame(Games games){
-//        return _gamesDao.addGame(games);
-//    }
-//    public Games findGames(int id){
-//        return _gamesDao.getGame(id);
-//    }
-//    public List<Games> findAllGames(){
-//        return _gamesDao.getAllGames();
-//    }
-//    public void updateGame (Games games){
-//        _gamesDao.updateGame(games);
-//    }
-//    public void removeGame (int id){
-//        _gamesDao.deleteGame(id);
-//    }
-//
-//    //t-shirt api
-//    public Tshirt saveTshirt(Tshirt tshirt){
-//        return _tShirtDao.addTshirt(tshirt);
-//    }
-//    public Tshirt findTshirt(int id){
-//        return _tShirtDao.getTshirt(id);
-//    }
-//    public List<Tshirt> findAllTshirts(){
-//        return _tShirtDao.getAllTshirt();
-//    }
-//    public void updateTshirt (Tshirt tshirt){
-//        _tShirtDao.updateTshirt(tshirt);
-//    }
-//    public void removeTshirt (int id){
-//        _tShirtDao.deleteTshirt(id);
-//    }
-
-
 
 }

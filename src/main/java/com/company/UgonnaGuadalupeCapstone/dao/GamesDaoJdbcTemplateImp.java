@@ -1,7 +1,6 @@
 package com.company.UgonnaGuadalupeCapstone.dao;
 
 
-import com.company.UgonnaGuadalupeCapstone.model.Console;
 import com.company.UgonnaGuadalupeCapstone.model.Games;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;

@@ -1,9 +1,6 @@
 package com.company.UgonnaGuadalupeCapstone.controller;
 
-
-import com.company.UgonnaGuadalupeCapstone.dao.ConsoleDao;
 import com.company.UgonnaGuadalupeCapstone.dao.GamesDao;
-import com.company.UgonnaGuadalupeCapstone.model.Console;
 import com.company.UgonnaGuadalupeCapstone.model.Games;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
@@ -12,7 +9,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.security.Principal;
+
 import java.util.List;
 
 @RestController
@@ -25,7 +22,6 @@ public class GamesController {
     public GamesController(GamesDao dao){
         this.dao = dao;
     }
-
 
     // add game
     @RequestMapping(value = "/games", method = RequestMethod.POST)

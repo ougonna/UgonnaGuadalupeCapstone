@@ -1,7 +1,6 @@
 package com.company.UgonnaGuadalupeCapstone.model;
 
 import java.math.BigDecimal;
-import java.util.Objects;
 
 public class Tshirt implements IItem {
     public static final String ITEM_TYPE = "T-Shirts";
@@ -85,17 +84,4 @@ public class Tshirt implements IItem {
         result = 31 * result + getQuantity();
         return result;
     }
-
-    //
-//    public boolean equals(Object object) {
-//        if (this == object) return true;
-//        if (object == null || getClass() != object.getClass()) return false;
-//        if (!super.equals(object)) return false;
-//        Tshirt tshirt = (Tshirt) object;
-//        return getTshirtId() == tshirt.getTshirtId() && getQuantity() == tshirt.getQuantity() && java.util.Objects.equals(getSize(), tshirt.getSize()) && java.util.Objects.equals(getColor(), tshirt.getColor()) && java.util.Objects.equals(getDescription(), tshirt.getDescription()) && java.util.Objects.equals(getPrice(), tshirt.getPrice());
-//    }
-//
-//    public int hashCode() {
-//        return Objects.hash(getTshirtId(), getSize(), getColor(), getDescription(), getPrice(), getQuantity());
-//    }
 }
