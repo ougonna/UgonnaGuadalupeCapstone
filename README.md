@@ -22,6 +22,7 @@ Students will also be able to add their project and capstone to their own Github
 
 ## Structure
 
+
 Your solution must have the following structural elements:
 - Your solution must be in an IntelliJ project called FirstNameLastNameCapstone where FirstName and LastName are your first and last names respectively.
 - Your project must be built using Spring Boot and Spring MVC. Initialize your project using start.spring.io
